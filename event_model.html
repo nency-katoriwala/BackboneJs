@@ -1,0 +1,55 @@
+<html>
+    <head>
+        <script src="js/jquery-2.1.3.min.js"></script>
+        <script src="js/underscore-min.js"></script>
+        <script src="js/backbone-min.js"></script>
+    </head>
+    <body>
+        <script>
+            let TempModel = Backbone.Model.extend({
+                  defaults: {
+                    "name" : "Default Name",
+                    "author" : "Default Author",
+                    "age" : null,
+                  },
+                  initialize : function(){
+                    console.log("Hellllooo.....");
+                  }
+            });
+
+            // let model_obj = new TempModel({
+            //     "name" : "<p>Luck by chance!!!</p>",
+            //     "author" : "Om Prakash",
+            //     "age" : 34,
+            // });
+            
+            let model_obj = new TempModel();
+
+            let TempView = Backbone.View.extend({
+                 model : model_obj,
+                 initialize : function(){
+                    this.render();
+                 },
+                 render : function(){
+
+                    /* if(this.model.has("name_like")){
+                        console.log("Key exists.....");
+                    }else{
+                        console.log("Key not exists.....");
+                    } */
+
+                    //this.model.unset("age");
+
+                    //this.model.clear();
+
+                    console.log(this.model.toJSON());
+                    //console.log(this.model.escape("name"));
+                    //console.log(this.model.get("name"));
+                    //console.log(this.model.has("name_like"));
+                 },
+            });
+
+            let view_obj = new TempView();
+        </script>
+    </body>
+</html>

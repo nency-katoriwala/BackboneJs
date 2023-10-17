@@ -1,0 +1,96 @@
+<!-- Underscore Js Methods -->
+<html>
+    <head>
+        <script src="js/jquery-2.1.3.min.js"></script>
+        <script src="js/underscore-min.js"></script>
+        <script src="js/backbone-min.js"></script>
+    </head>
+    <body>
+        <div id="content"></div>
+
+
+        <script type="text/template" id="temp-collection">
+           
+        </script>
+
+        <script>
+            let PlayerModel = Backbone.Model.extend({
+                 defaults: {
+                    name: "Priya Sharma",
+                    team: "Worpress",
+                    age: 34
+                 },
+            });
+
+            let player1 = new PlayerModel({
+                name: "Riddhi Shah",
+                team: "PHP",
+                age: 25
+            });
+
+            let player2 = new PlayerModel({
+                name: "Seema Patel",
+                team: "Shopify",
+                age: 20
+            });
+
+            let player3 = new PlayerModel({
+                name: "Sai Tandel",
+                team: "Laravel",
+                age: 22
+            });
+
+
+            let MakeCollection = Backbone.Collection.extend({
+                    model:PlayerModel
+            });
+
+            let make_collection = new MakeCollection([player1,player2,player3]);
+
+            
+            let MakeView = Backbone.View.extend({
+                 collection:make_collection,
+                  initialize: function(){ 
+                      this.render();
+                  },
+                  render: function(){
+                 
+                   // -.each();
+                  /*  _.each(this.collection.toJSON(),function(model){
+                      console.log(model.name);
+                   }); */
+
+                   // _.where();
+                   let player_with_where = _.where(this.collection.toJSON(),{age:20});
+                   //console.log(player_with_where); // given all model which age has 20
+
+                     // _.findWhere();
+                     let player_with_findWhere = _.findWhere(this.collection.toJSON(),{age:20});
+                     //console.log(player_with_findWhere); //give first model which age has 20
+
+                    // _.find();
+                    let player_with_find = _.find(this.collection.toJSON(), function(model){
+                        if(model.age > 20){
+                            return model.team;
+                        }
+                    });
+                    //console.log(player_with_find); //give first model which age is grater than 20
+
+                    // _.filter();
+                    let player_with_filter = _.filter(this.collection.toJSON(), function(model){
+                        if(model.age > 22){
+                            return model.team;
+                        }
+                    });
+                    //console.log(player_with_filter); // give all models which age is greter than 22
+
+                    // _.pluck();
+                    let player_with_pluck = _.pluck(this.collection.toJSON(),"name");
+                    console.log(player_with_pluck);
+                  },
+            });
+
+            let make_view = new MakeView();
+        </script>
+    </body>
+</html>

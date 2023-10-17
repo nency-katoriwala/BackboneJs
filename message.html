@@ -1,0 +1,44 @@
+<html>
+    <head>
+         <script src="js/jquery-2.1.3.min.js"></script>
+       <script src="js/underscore-min.js"></script>
+        <script src="js/backbone-min.js"></script> 
+    </head>
+    <body>
+      <div id="custom-content"></div>
+      <script>
+          jQuery(document).ready(function(){    
+              //jQuery("body").append("<h2>YES, IT IS WORKING!!!!!</h2>");
+              let FirstView = Backbone.View.extend({
+                tagName:"span",
+                className:"custom-tag",
+                id:"sp-tag",
+                initialize:function() {
+                    this.render();
+                    jQuery("body").append("<h1>Welcome to Dynamic Dreamz!!!</h1>");
+                  },
+                  render:function(){
+                    jQuery("body").append("<h4>YES, BACKBONE IS WORKING!!!!!</h4>");
+                    //console.log(this.$el[0]['ownerDocument']['location']);
+                    this.$el.html("<b>Hello, You Are using chrome....</b>").css('color','green');
+
+                    return this;
+                    //console.log(this.el);
+                    //console.log(this.$el);
+                  }
+              });
+
+            //   let first_view = new FirstView({
+            //     el:"#custom-content"
+            //   });
+
+            let first_view = new FirstView();
+
+            jQuery("#custom-content").html(first_view.$el);
+              
+              //first_view.render();
+
+          });
+      </script>
+    </body>
+</html>

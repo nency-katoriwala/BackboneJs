@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <script src="js/jquery-2.1.3.min.js"></script>
+        <script src="js/underscore-min.js"></script>
+        <script src="js/backbone-min.js"></script>
+    </head>
+    <body>
+
+        <script>
+             let MakeModel = Backbone.Model.extend({
+                   initialize: function(){
+                      console.log('Model Created...');
+                   },
+             });
+
+             let make_model = new MakeModel({
+                "name":"Alia Bhatt",
+                "profession":"Actor",
+             });
+
+
+             let MakeView = Backbone.View.extend({
+                model:make_model,
+                initialize: function(){
+                      this.render();
+                   },
+                   render: function(){
+                       console.log('View Created...');
+                       console.log(this.model.toJSON());
+                       console.log(this.model.get('name'));
+                   },
+             });
+
+             
+             let make_view = new MakeView();
+        </script>
+
+    </body>
+</html>

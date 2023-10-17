@@ -1,0 +1,64 @@
+<html>
+    <head>
+        <script src="js/jquery-2.1.3.min.js"></script>
+        <script src="js/underscore-min.js"></script>
+        <script src="js/backbone-min.js"></script>
+    </head>
+    <body>
+        <script>
+            let PlayerModel = Backbone.Model.extend({
+                 defaults: {
+                    name: "Priya Sharma",
+                    team: "Worpress",
+                    age: 34
+                 },
+            });
+
+            let player1 = new PlayerModel({
+                name: "Riddhi Shah",
+                team: "PHP",
+                age: 25
+            });
+
+            let player2 = new PlayerModel({
+                name: "Seema Patel",
+                team: "Shopify",
+                age: 20
+            });
+
+            let player3 = new PlayerModel({
+                name: "Sai Tandel",
+                team: "Laravel",
+                age: 22
+            });
+
+
+            let MakeCollection = Backbone.Collection.extend({
+                    model:PlayerModel
+            });
+
+            let make_collection = new MakeCollection([player1,player2,player3]);
+
+
+            let MakeView = Backbone.View.extend({
+                Collection:make_collection,
+                 initialize: function(){
+                    this.render();
+                 },
+                 render: function(){
+                    let player_with_map = _.map(this.Collection.toJSON(), function(model){ 
+
+                        let born_year = 2023 - model.age;
+                    
+                       return born_year;
+
+                    });
+
+                    console.log(player_with_map);
+                 },
+            });
+
+            let make_view = new MakeView();
+        </script>
+    </body>
+</html>

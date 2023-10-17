@@ -1,0 +1,53 @@
+<html>
+    <head>
+        <script src="js/jquery-2.1.3.min.js"></script>
+        <script src="js/underscore-min.js"></script>
+        <script src="js/backbone-min.js"></script>
+    </head>
+    <body>
+
+        <script>
+             let MakeModel = Backbone.Model.extend({
+                   initialize: function(){
+                      console.log('Model Created...');
+                      this.bind("change:name", function(model){
+                         console.log("model Changed.......");
+                      });
+                   },
+             });
+
+             let make_model = new MakeModel({
+                "name":"Vikash Sharma",
+                "team":"Infoteach",
+                "age" : 34
+             });
+
+
+             let MakeView = Backbone.View.extend({
+                model:make_model,
+                initialize: function(){
+                      this.render();
+                   },
+                   render: function(){
+                       console.log('View Created...');
+                    //    this.model.on("change",function(){
+                    //         console.log("Detected by view");
+                    //     });
+
+                      /* this.model.on("change:team", function(){
+                          console.log("Team has been changed!!!");
+                       }); */
+
+                       this.model.bind("change:team", this.ModelChangeEvent);
+                   },
+                   ModelChangeEvent: function(){
+                     console.log("Team has been changed with callback function!!!");
+                   },
+             });
+
+             
+             let make_view = new MakeView();
+        </script>
+
+    </body>
+</html>

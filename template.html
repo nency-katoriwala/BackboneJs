@@ -1,0 +1,58 @@
+<!-- Underscore Template Example -->
+<html>
+    <head>
+         <script src="js/jquery-2.1.3.min.js"></script>
+          <script src="js/underscore-min.js"></script>
+        <script src="js/backbone-min.js"></script> 
+    </head>
+    <body>
+      <div id="custom-content"></div>
+      <div id="cont"></div>
+      <script type="text/template" id="temp1-fview">
+          GOOD EVENING........
+      </script>
+      <script>
+          jQuery(document).ready(function(){    
+            
+            let TemplateView = Backbone.View.extend({
+              el:"#cont",
+              /* Option:1 */
+              //template:_.template(jQuery("#temp1-fview").html()),
+
+              /* Option:3 */
+              template:jQuery("#temp1-fview").html(),
+
+              /* Option:4 Direct write content using template */
+              //template:_.template('.....content.......'),
+
+               initialize:function(){
+                   this.render();
+               },
+               render:function(){
+
+                /* Option:2 */
+                //let rendering_template = _.template(jQuery("#temp1-fview").html());
+
+                 /* Option:3 */
+                let rendering_template = _.template(this.template);
+
+                 jQuery("#custom-content").html("<b>Welcome to <span class='red'>D</span>ynam<span class='red'>i</span>c Dreamz</b>");
+                 jQuery('span.red').css('color','red');
+                 /* Option:1 */
+                 //this.$el.html(this.template());
+                 
+                 /* Option:2 & Option:3 */
+                 this.$el.html(rendering_template());
+
+                 //return this;
+               }
+            });
+
+            let template_view = new TemplateView();
+
+          
+
+          });
+      </script>
+    </body>
+</html>

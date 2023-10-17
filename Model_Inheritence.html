@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <script src="js/jquery-2.1.3.min.js"></script>
+        <script src="js/underscore-min.js"></script>
+        <script src="js/backbone-min.js"></script>
+    </head>
+    <body>
+       <div id="content"></div>
+       <script>
+         let ParentModel = Backbone.Model.extend({
+              initialize: function(){
+                console.log("parent Model Running...");
+              },
+              playing: function(){
+                console.log("parent playing Method is calling.....");
+              }
+
+         });
+
+         //let parent_model = new ParentModel();
+
+         let ChildModel = ParentModel.extend({
+             initialize: function(){
+                ParentModel.prototype.initialize.apply(this);
+                console.log("Child Model Running...");
+             },
+             playing: function(){
+                ParentModel.prototype.playing.apply(this);
+                console.log("Child playing Method is calling.....");
+             },
+            childMethod: function(){
+                console.log("Child Method is calling...");
+            }
+         });
+
+         let child_model = new ChildModel();
+       </script>
+    </body>
+</html>

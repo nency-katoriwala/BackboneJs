@@ -1,0 +1,53 @@
+<html>
+    <head>
+        <script src="js/jquery-2.1.3.min.js"></script>
+        <script src="js/underscore-min.js"></script>
+        <script src="js/backbone-min.js"></script>
+    </head>
+    <body>
+        <script>
+            let TempModel = Backbone.Model.extend({
+                  initialize : function(){
+                    console.log("Hellllooo.....");
+                  },
+                  validate : function(attribute){
+                    if(attribute.age < 0){
+                        return "Age Should not be negative...";
+                    }
+
+                    if(!attribute.name){
+                        return "Name is required!!";
+                    }
+                  }
+            });
+
+            let model_obj = new TempModel({
+              name : "Vinod Mehta",
+              team : "Infoteach",
+              age : -1,
+            });
+            
+           
+
+            let TempView = Backbone.View.extend({
+                 model : model_obj,
+                 initialize : function(){
+                    this.render();
+                 },
+                 render : function(){
+
+                    if(this.model.isValid()){
+                        console.log("Valid Values are there...");
+                    }else{
+                        console.log(this.model.validationError);
+                    }
+
+                    console.log(this.model.toJSON());
+                
+                 },
+            });
+
+            let view_obj = new TempView();
+        </script>
+    </body>
+</html>

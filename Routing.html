@@ -1,0 +1,71 @@
+<html>
+    <head>
+        <script src="js/jquery-2.1.3.min.js"></script>
+        <script src="js/underscore-min.js"></script>
+        <script src="js/backbone-min.js"></script>
+    </head>
+    <body>
+      
+        <div id="content"></div>
+
+        <script>
+            // View 1
+            let MakeView1 = Backbone.View.extend({
+                el: "#content",
+                initialize: function(){
+                    this.render();
+                },
+                render: function(){
+                   this.$el.html("1 View is Running....");
+                },
+            });
+
+            // View 2
+            let MakeView2 = Backbone.View.extend({
+                el: "#content",
+                initialize: function(){
+                    this.render();
+                },
+                render: function(){
+                   this.$el.html("2 View is Running....");
+                },
+            });
+
+             // View 3
+             let MakeView3 = Backbone.View.extend({
+                el: "#content",
+                initialize: function(){
+                    this.render();
+                },
+                render: function(){
+                   this.$el.html("3 View is Running....");
+                },
+            });
+
+
+            let MakeRouter = Backbone.Router.extend({
+            routes:{
+                "":"showView1",
+                "view2":"showView2",
+                "view3":"showView3",
+            },
+            showView1:function(){
+               let make_view1 = new MakeView1();
+            },
+            showView2:function(){
+                let make_view2 = new MakeView2();
+            },
+            showView3:function(){
+                let make_view3 = new MakeView3();
+            },
+
+            });
+
+            let make_router_obj = new MakeRouter();
+
+            Backbone.history.start();
+
+            /* Always pass routes using #/ example : http://127.0.0.1:3000/Routing.html#/view3    */ 
+        </script>
+    </body>
+</html>

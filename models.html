@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <script src="js/jquery-2.1.3.min.js"></script>
+        <script src="js/underscore-min.js"></script>
+        <script src="js/backbone-min.js"></script>
+    </head>
+    <body>
+        <script>
+           
+                let ViewModel = Backbone.Model.extend({
+                   initialize: function(){
+                      console.log('THIS IS FIRST MODEL');
+                   }
+                });
+
+                let view_model = new ViewModel();
+
+                //view_model.set("name","Dynamic Dtramz");
+
+                view_model.set({
+                    "name":"Dynamic Dreamz",
+                    "phone":" +1 (804) 591 0099",
+                    "email":"info@dynamicdreamz.com",
+                    "site":"http://www.dynamicdreamz.com/",
+                    "owner":"Gaurav Shah",
+                });
+
+                console.log(view_model);
+           
+        </script>
+    </body>
+</html>

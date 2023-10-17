@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <script src="js/jquery-2.1.3.min.js"></script>
+        <script src="js/underscore-min.js"></script>
+        <script src="js/backbone-min.js"></script>
+    </head>
+    <body>
+        <div id="content"></div>
+        <script type="text/html" id="eventTemplate">
+            <button id="clickme">CLICK ME</button>
+        </script>
+        <script>
+            jQuery(document).ready(function(){
+                let EventView = Backbone.View.extend({
+                  el:"#content",
+                  template: _.template(jQuery("#eventTemplate").html()),
+                  events:{
+                    "click #clickme":"OnClickButton"
+                  },
+                  OnClickButton:function(){
+                      //alert("HEY!!! I AM USING CHROME.....");
+                      jQuery('body').append("<h5>HEY!!! I AM USING CHROME.....</h5>");
+                  },
+                  initialize: function(){
+                     this.render();
+                  },
+                  render: function(){
+                    jQuery('body').append("<h1>WELCOME</h1>");
+                    this.$el.html(this.template());
+                  }
+                });
+
+
+                let event_view = new EventView();
+            });
+        </script>
+    </body>
+</html>
